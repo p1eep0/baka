@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Are you Ready???</title>
+  <title>baka</title>
 
   <style>
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: system-ui, sans-serif;
       height: 100vh;
       overflow: hidden;
 
@@ -18,12 +18,12 @@
       align-items: center;
       text-align: center;
 
-      background: url("gpz.jpg") no-repeat center center fixed;
+      background: url("bg.jpg") no-repeat center center fixed;
       background-size: cover;
       color: white;
+      transition: background-image 0.6s ease;
     }
 
-    /* Dark overlay for readability */
     body::before {
       content: "";
       position: fixed;
@@ -51,7 +51,6 @@
       border: none;
       cursor: pointer;
       min-width: 140px;
-      touch-action: manipulation;
     }
 
     #yes {
@@ -62,33 +61,50 @@
     #no {
       background-color: #555;
       color: white;
-      position: absolute;
+      position: fixed;
       left: 50%;
-      transform: translateX(-50%);
-      top: 90px;
+      top: 65%;
+      transform: translate(-50%, -50%);
+    }
+
+    #message {
+      display: none;
+      font-size: 1.5rem;
+      padding: 0 20px;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>Will you be my Valentine?</h1>
+  <h1 id="question">Will you be my Valentine? 💘</h1>
 
-  <div class="buttons">
-    <button id="yes" onclick="sayYes()">YES</button>
-    <button id="no" ontouchstart="moveNo()" onmouseover="moveNo()">NO 😒</button>
+  <div class="buttons" id="buttons">
+    <button id="yes">YES 💕</button>
+    <button id="no">NO 😒</button>
   </div>
 
-  <!-- Background Music -->
+  <div id="message">
+    <h1>YAY!!! 🥰💖</h1>
+    <p>
+      Best decision ever 😌<br />
+      Happy Valentine’s Day ❤️
+    </p>
+  </div>
+
   <audio id="bgMusic" loop>
-    <source src="gpzcrw.mp3" type="audio/mpeg">
+    <source src="music.mp3" type="audio/mpeg">
   </audio>
 
   <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const music = document.getElementById("bgMusic");
+
     function moveNo() {
-      const noBtn = document.getElementById("no");
-      const maxX = window.innerWidth - noBtn.offsetWidth - 20;
-      const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+      const padding = 20;
+      const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+      const maxY = window.innerHeight - noBtn.offsetHeight - padding;
 
       const x = Math.random() * maxX;
       const y = Math.random() * maxY;
@@ -97,18 +113,21 @@
       noBtn.style.top = y + "px";
     }
 
-    function sayYes() {
-      const music = document.getElementById("bgMusic");
-      music.play();
+    noBtn.addEventListener("mouseover", moveNo);
+    noBtn.addEventListener("touchstart", moveNo);
 
-      document.body.innerHTML = `
-        <h1 style="font-size:2.6rem;">YATAAAAA!!!</h1>
-        <p style="font-size:1.4rem; padding: 0 20px;">
-          POOPOOPEEPEEbr>
-          Happy Valentine’s Day <3
-        </p>
-      `;
-    }
+    yesBtn.addEventListener("click", () => {
+      // Start music (mobile-safe)
+      music.play().catch(() => {});
+
+      // Change background
+      document.body.style.backgroundImage = 'url("bg2.jpg")';
+
+      // Swap content
+      document.getElementById("question").style.display = "none";
+      document.getElementById("buttons").style.display = "none";
+      document.getElementById("message").style.display = "block";
+    });
   </script>
 
 </body>
