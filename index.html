@@ -72,6 +72,35 @@
       font-size: 1.5rem;
       padding: 0 20px;
     }
+
+    /* GIF animation */
+    .celebration-gif {
+      width: 70%;
+      max-width: 300px;
+      margin: 20px auto;
+      border-radius: 16px;
+
+      /* start invisible */
+      transform: scale(0);
+      opacity: 0;
+
+      /* animate */
+      animation: popIn 0.8s forwards;
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      60% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
   </style>
 </head>
 
@@ -86,9 +115,13 @@
 
   <div id="message">
     <h1>YATAAAA!!!</h1>
+
+    <!-- GIF added here -->
+    <img src="rat.gif" alt="rat" class="celebration-gif">
+
     <p>
       I lob u<br />
-      Happy Valentine’s Day
+      happy valentine’s day
     </p>
   </div>
 
@@ -123,7 +156,7 @@
       // Change background
       document.body.style.backgroundImage = 'url("gpz.jpg")';
 
-      // Swap content
+      // Show the second page
       document.getElementById("question").style.display = "none";
       document.getElementById("buttons").style.display = "none";
       document.getElementById("message").style.display = "block";
