@@ -73,29 +73,25 @@
       padding: 0 20px;
     }
 
-    /* GIF animation */
+    /* GIF pop-in animation */
     .celebration-gif {
       width: 70%;
       max-width: 300px;
       margin: 20px auto;
       border-radius: 16px;
 
-      /* start invisible */
       transform: scale(0);
-      opacity: 0;
+      opacity: 1; /* stay visible */
 
-      /* animate */
       animation: popIn 0.8s forwards;
     }
 
     @keyframes popIn {
       0% {
         transform: scale(0);
-        opacity: 0;
       }
       60% {
         transform: scale(1.2);
-        opacity: 1;
       }
       100% {
         transform: scale(1);
@@ -116,8 +112,8 @@
   <div id="message">
     <h1>YATAAAA!!!</h1>
 
-    <!-- GIF added here -->
-    <img src="rat.gif" alt="rat" class="celebration-gif">
+    <!-- GIF pops in here -->
+    <img src="baby.gif" alt="bebe" class="celebration-gif">
 
     <p>
       I lob u<br />
@@ -134,6 +130,7 @@
     const yesBtn = document.getElementById("yes");
     const music = document.getElementById("bgMusic");
 
+    // Move NO button randomly
     function moveNo() {
       const padding = 20;
       const maxX = window.innerWidth - noBtn.offsetWidth - padding;
@@ -149,6 +146,7 @@
     noBtn.addEventListener("mouseover", moveNo);
     noBtn.addEventListener("touchstart", moveNo);
 
+    // YES button click
     yesBtn.addEventListener("click", () => {
       // Start music (mobile-safe)
       music.play().catch(() => {});
