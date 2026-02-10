@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Important Question 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+      padding: 0 20px;
+    }
+
+    .buttons {
+      position: relative;
+      width: 100%;
+      height: 200px;
+    }
+
+    button {
+      font-size: 1.3rem;
+      padding: 18px 30px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      min-width: 140px;
+      touch-action: manipulation;
+    }
+
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    #no {
+      background-color: #555;
+      color: white;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 80px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Will you be my Valentine? 💘</h1>
+
+  <div class="buttons">
+    <button id="yes" onclick="sayYes()">YES 💕</button>
+    <button id="no" ontouchstart="moveNo()" onmouseover="moveNo()">NO 😒</button>
+  </div>
+
+  <script>
+    function moveNo() {
+      const noBtn = document.getElementById("no");
+      const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+      const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    function sayYes() {
+      document.body.innerHTML = `
+        <h1 style="font-size:2.5rem;">YAY!!! 🥰💖</h1>
+        <p style="font-size:1.4rem; padding: 0 20px;">
+          Best decision ever 😌<br>
+          Happy Valentine’s Day ❤️
+        </p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
